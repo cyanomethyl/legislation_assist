@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<main>
+
     <header>
         <h1> Internal Documentation for Legislation Assist </h1>
     </header>
@@ -23,7 +23,7 @@
 
 
 <div class="dropdown-container">
-    <button class="dropdown-button"> The tech stack </button>
+    <button class="dropdown-button"> Tech stack </button>
         <div class="dropdown">
             <ul>
                 <li> Python </br> Used by Django, including to communicate with Open AI's API.  </li>
@@ -40,8 +40,8 @@
 </div>
 
 <div class="dropdown-container">
-<button class="dropdown-button"> Target audience </button>
-
+<button class="dropdown-button"> Who is it for?</button>
+<p> people in areas of law liek muni or general civil lit where ltos of statutes can be involved. and people interacting with legal issues new to them where they might not be aware of all the pertinent statutes. or people looking for repealed or out of jusridiction cases.</p>
 <button class="dropdown-button"> How it works </button>
 
 <div class="dropdown-container">
@@ -53,7 +53,8 @@
         Summaries provided by the App help mitigate some of
         the time cost of being provided with irrelevant legislation, as these summaries are a covenient way of helping lawyers understand
         if a piece of legislation applies or not, so that they do not have to expend time seeking out the legislation itself. Occasionally being provided with a minority of irrelevant legislation may also help bolster confidence in the App because it may make it seem more
-    comprehensive in the search it undertakes. Finally, very rarely is legislation on its own ever cited without reference to a specific provision(s) in the legislation, or without preexisiting knowledge of a specific provision(s) in legislation. This means that even if irrelevant legislation is provided, a lawyer
+    comprehensive in the search it undertakes (i.e. it is more likely to include a comprehensive list of legislation if it is going so far as to even be providing some irrelevant legislation that's at the fringe. Similar to cleaning a table so well that the last swipe of the cloth removes no additional
+    dirt). Finally, very rarely is legislation on its own ever cited without reference to a specific provision(s) in the legislation, or without preexisiting knowledge of a specific provision(s) in legislation. This means that even if irrelevant legislation is provided, a lawyer
     will discover this in the process of including it in their work, or will already be aware of this (i.e. they have preexisting knowledge of the legislation). The greater risk is that a lawyer may overly rely on the App and not 
     realize that it missed a piece of legislation. However that is the current state of LLMs in legal applications across the board.  </p> 
 
@@ -67,6 +68,6 @@
 <button class="dropdown-button"> Choices made and not made </button>
 
 
-</main>
+
 
 {% endblock %}
