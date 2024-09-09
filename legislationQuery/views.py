@@ -6,14 +6,14 @@ from .models import LegislationQuery
 
 def index(request):
     context = {
-        'model' : LegislationQuery,
+        'legislation_queries_answers' : LegislationQuery.objects.all(),
         'title' : 'Find Relevant Legislation | Legislation Assist',
     }
     return render(request, "legislationQuery/index.html", context)
 
 def documentation(request):
     context = {
-        'model': LegislationQuery,
+        'legislation_queries_answers': LegislationQuery.objects.all(),
         'title': 'Internal Documentation | Legislation Assist',
     }
     return render(request, "legislationQuery/documentation.html", context)
