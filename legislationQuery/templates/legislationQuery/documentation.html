@@ -8,51 +8,58 @@
     </header>
     
 <p> Welcome to the internal documentation for Legislation Assist (the "App"). The App is intended as a demonstration of technologies often used in the AI legal tech domain (e.g. Python, APIs, LLMs, SQL databases, SQL, etc).</p>
-<p> The content on this page describes, among other things, the design choices made in the production of this web application. Such choices are made for technical, or end user value reasons. </p>
 
 
-<button class="dropdown-button"> What is Legislation Assist? </button>
-    <div class="dropdown">
-        <p>Legislation Assist is a GPT-4o powered legal research tool that allows lawyers to input a legal issue, and receive a list of potentially relevant legislation and brief summaries of same. </p>
-        <ul> The App can help lawyers with:
-            <li> Legal issues potentially involving many statutes that you are unfamiliar or unaware of. This can be a great way to find relevant provisions, or it can help kickstart research to find pertinent caselaw.</li>
-            <li> Accelerating the discovery of various legislation compared to using Google, Westlaw, or browsing federal, state, or provincial (Canada) websites.</li>
-        </ul>
-    </div>
+<div class="dropdown-container">
+    <button class="dropdown-button"> What is Legislation Assist? </button>
+        <div class="dropdown">
+            <p>Legislation Assist is a GPT-4o powered legal research tool that allows lawyers to input a legal issue, and receive a list of potentially relevant legislation and brief summaries of same. </p>
+            <ul> The App can help lawyers with:
+                <li> Legal issues potentially involving many statutes that you are unfamiliar or unaware of. This can be a great way to find relevant provisions, or it can help kickstart research to find pertinent caselaw.</li>
+                <li> Accelerating the discovery of various legislation compared to using Google, Westlaw, or browsing federal, state, or provincial (Canada) websites.</li>
+            </ul>
+        </div>
+</div>
 
 
-<button class="dropdown-button"> The tech stack </button>
-    <div class="dropdown">
-        <ul>
-            <li> Python (used by Django, the web framework that powers this app) </li>
-            <li> Open AI's API. The LLM that powers the App's query and response backend. This was selected because it is effective, easy to use, and appears to be the most commonly used LLM for commercial purposes. Accessing Open AI's API also demonstrates knowledge of APIs vs rolling my own LLM locally or on a server. </li>
-            <li> Fetch API. Used for displaying answers from Open AI's API without a full page refresh. </li>
-            <li> SQL. While Django's Object-Relational Mapping ('ORM') is used instead of raw SQL queries (due to benefits like speed of development, and built in SQL injection protection), SQL queries were used for basic things like initial database and user creation. </li>
-            <li> PostgreSQL. An SQL database that saves queries and responses. PostgreSQL was chosen over SQLite or JSON flat files due to its greater scalability (and higher likelihood of being used in large commercial projects), even though it is possibly "overkill" for the purpose of the App. </li>
-            <li> Django </li>
-            <li> HTML </li>
-            <li> JavaScript. Used for responsiveness. </li>
-            <li> CSS </li>
-        </ul>
-    </div>
+<div class="dropdown-container">
+    <button class="dropdown-button"> The tech stack </button>
+        <div class="dropdown">
+            <ul>
+                <li> Python </br> Used by Django, including to communicate with Open AI's API.  </li>
+                <li> Open AI's API (specifically GPT-4o). </br> The LLM that powers the App's query and response functionality. This was selected because it is effective, and appears to be the most commonly used LLM for commercial purposes (used by CoCounsel for example. Although CoCounsel 2.0 is, as of August 2024, testing Gemini 1.5 + GPT-4o.)</li>
+                <li> Fetch API.</br> Used for displaying answers from Open AI's API without a full page refresh. </li>
+                <li> SQL.</br> While Django's Object-Relational Mapping ('ORM') is used instead of raw SQL queries (due to benefits like speed of development, and built in SQL injection protection), SQL queries were used for basic things like initial database and user creation. </li>
+                <li> PostgreSQL. </br>SQL database, using a model to save queries and responses. PostgreSQL was chosen over SQLite or JSON flat files due to its greater scalability (and higher likelihood of being used in large commercial projects), even though it is possibly "overkill" for the purpose of the App. </li>
+                <li> Django </br> Web framework that powers the App's backend, and handles aspects of the frontend (e.g. templates, handling static files).</li>
+                <li> HTML </br> For the App's UI.</li>
+                <li> JavaScript. </br> Used for responsiveness for the App's UI (including Fetch API, which is a JavaScript API). </li>
+                <li> CSS </br> Used to style the App's UI.</li>
+            </ul>
+        </div>
+</div>
+
+<div class="dropdown-container">
 <button class="dropdown-button"> Target audience </button>
 
 <button class="dropdown-button"> How it works </button>
 
-<button class="dropdown-button"> Scope and limitations</button>
-<div class="dropdown">
-<p> GPT-4o is a highly appropriate technology given the scope of the App, as the App's purpose is mostly discovery of a finite, relatively limited range of sources (i.e. legislation). Additionally, the legislation itself can be relatively easily summarized.
-    The most significant limitation with the use of GPT-4o in this context is the potential for it to inaccurately analyze the prompt and, or not provide all of the relevant legislation. For that reason I have configured the App via the API's temperature setting, as well as added 
-    a boolean field to help increase accuracy (see the <i>Choices made and not made</i> button below). This added inclusivity may at times provide legislation that is not relevant, but this is deemed to be an acceptable cost given the high stakes nature of errors in law and its emphasis on accuracy and nuance. 
-    Summaries provided by the App help mitigate some of
-    the time cost of being provided with irrelevant legislation, as these summaries are a covenient way of helping lawyers understand
-    if a piece of legislation applies or not, so that they do not have to expend time seeking out the legislation itself. Occasionally being provided with a minority of irrelevant legislation may also help bolster confidence in the App because it may make it seem more
-comprehensive in the search it undertakes. Finally, very rarely is legislation on its own ever cited without reference to a specific provision(s) in the legislation, or without preexisiting knowledge of a specific provision(s) in legislation. This means that even if irrelevant legislation is provided, a lawyer
-will discover this in the process of including it in their work, or will already be aware of this (i.e. they have preexisting knowledge of the legislation). The greater risk is that a lawyer may overly rely on the App and not 
-realize that it missed a piece of legislation. However that is the current state of LLMs in legal applications across the board.  </p> 
+<div class="dropdown-container">
+    <button class="dropdown-button"> Scope and limitations</button>
+    <div class="dropdown">
+    <p> GPT-4o is well suited to the scope of the App, as the App's purpose is mostly discovery of a finite, relatively limited range of sources (i.e. legislation). Additionally, the legislation itself can be relatively easily summarized.
+        The most significant limitation with the use of GPT-4o in this context is the potential for it to inaccurately analyze the prompt and, or not provide all of the relevant legislation. For that reason I have configured the App via the API's temperature setting, as well as added 
+        a boolean field to help increase accuracy (see the <i>Choices made and not made</i> button below). This added inclusivity may at times provide legislation that is not relevant, but this is deemed to be an acceptable cost given the high stakes nature of errors in law and its emphasis on accuracy and nuance. 
+        Summaries provided by the App help mitigate some of
+        the time cost of being provided with irrelevant legislation, as these summaries are a covenient way of helping lawyers understand
+        if a piece of legislation applies or not, so that they do not have to expend time seeking out the legislation itself. Occasionally being provided with a minority of irrelevant legislation may also help bolster confidence in the App because it may make it seem more
+    comprehensive in the search it undertakes. Finally, very rarely is legislation on its own ever cited without reference to a specific provision(s) in the legislation, or without preexisiting knowledge of a specific provision(s) in legislation. This means that even if irrelevant legislation is provided, a lawyer
+    will discover this in the process of including it in their work, or will already be aware of this (i.e. they have preexisting knowledge of the legislation). The greater risk is that a lawyer may overly rely on the App and not 
+    realize that it missed a piece of legislation. However that is the current state of LLMs in legal applications across the board.  </p> 
 
-<p> LLMs are also well suited for this type of task because legal research of this kind does not require inputting sensitive client data to obtain an accurate result. In fact, a lawyer would generally not even have to make an effort to avoid inputting sensitive information, because it is typically
-    irrelevant for this kind of research. This eases what is one of the primary concerns of lawyers and law firms at this time. Having said that, if you provide a highly specific scenario, there could some cause for concern. </p>
+    <p> LLMs are also well suited for this type of task because legal research of this kind does not require inputting sensitive client data to obtain an accurate result. In fact, a lawyer would generally not even have to make an effort to avoid inputting sensitive information, because it is typically
+        irrelevant for this kind of research. This eases what is one of the primary concerns of lawyers and law firms at this time. Having said that, if you provide a highly specific scenario, there could some cause for concern. </p>
+    </div>
 </div>
 
 <button class="dropdown-button"> Technical explanations for comments in code </button>
