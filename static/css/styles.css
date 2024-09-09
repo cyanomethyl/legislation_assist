@@ -1,0 +1,101 @@
+html{
+}
+body{
+    margin:0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+    font-family: 'Open Sans', 'Segoe UI', 'system-ui';
+    box-sizing: border-box;
+    overflow-y: scroll;
+    height: 100%;
+    width: 100%;
+}
+nav{
+    background-color: #FA6400;
+    width:100%;
+    
+}
+#nav-inner{
+    width: 1280px;
+    display:flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: 1px;
+}
+nav ul{
+    display:flex;
+    flex-direction:row;
+    gap:35px;
+    text-decoration:none;
+    list-style-type:none;
+
+}
+nav a {
+    color: white;
+}
+a {
+    text-decoration: none;
+    color: black;
+    border: 1px solid transparent;
+    padding: 10px;
+
+}
+a:hover{
+    border-radius: 8px;
+    background: #DC4300;
+ 
+}
+main{
+width: 1280px;
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: left;
+}
+h1{
+    background: -webkit-linear-gradient(left, #FA6400, #DC4300);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.dropdown-button{
+    border:0px;
+    border-radius: 20px;
+    width: 445px;
+    height: 50px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-color: #FA6400;
+    color:white;
+    font-weight:bold;
+    font-size: 16px;
+}
+.dropdown-button:hover{
+    background-color: #DC4300;
+    cursor: pointer;
+    text-decoration: underline;
+    box-shadow: 0 2px 4px 3px rgba(0, 0, 0, 0.1);
+}
+ul{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+#logo {
+    color: white;
+    font-weight:bold;
+    font-size: 1.2rem;
+   
+}
+.dropdown{
+    display: none;
+    width: 800px;
+    background-color: #fff1e8;
+    border-radius:8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left:20px;
+    padding-right:20px;
+}
