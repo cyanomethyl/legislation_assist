@@ -46,9 +46,13 @@ function sendQueryOpenAIView() {
         })
     })
    .then(function(response) { 
-    response.json()})
-   .then(function (json) {
-
+    return response.text()})
+   .then(function(answer) {
+    console.log(answer)
+        document.querySelector('#answer-field').innerHTML = answer;
+   })
+   .catch(function(error) {
+    console.error('Error:', error)
    });
 });
 };
