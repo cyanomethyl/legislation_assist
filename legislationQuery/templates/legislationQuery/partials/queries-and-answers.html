@@ -1,2 +1,8 @@
-{{answer_from_gpt}}
+{% if user_query == ' ' %}
+You need to input a query.
 
+
+{% else %}
+    {{html_answer_processed}}
+
+{% endif %}

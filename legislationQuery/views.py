@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 from .models import LegislationQuery
+from django.utils.safestring import mark_safe
 import os
+import markdown
 import httpx
 import asyncio
 import json
@@ -35,9 +37,17 @@ def documentation(request):
 def open_ai_connect(request):
 
     if (request.method) == 'POST':
+
+        # Insert rate limiter here.
+
+        
         parsed_json = json.loads(request.body)
         user_query = parsed_json.get('userQuery')
-        print("user's query:", user_query)
+        # Backend check to prevent DB calls when user hasn't input a question. This is a redundancy in case an user disables specific JS code that prevents calls to backend.
+        if user_query == ' ':
+            html_insert = render_to_string('legislationQuery/partials/queries-and-answers.html', {'user_query':user_query,})
+            return HttpResponse(html_insert)
+      
 
         # Using async in order not to have to poll/auto refresh, and instead receive a real time response. 
         client = AsyncOpenAI(
@@ -51,10 +61,11 @@ def open_ai_connect(request):
             chat_completion = await client.chat.completions.create(
             messages=[
                 {'role': 'user', 'content': user_query},
-                {'role': 'system', 'content': '''You are a lawyer writing a research memo. Provide a list of legislation (i.e. statutes, regulations and by-laws) relevant to the legal issue the user has asked about. Include a lot of legislation, be very inclusive. Format 
+                {'role': 'system', 'content': '''You are a lawyer writing a research memo. Only provide a list of legislation (i.e. statutes, regulations and by-laws) relevant to the legal issue. Include a lot of legislation. Format 
                  it by title of the legislation, and a detailed summary of what the legislation is about, and a detailed explanation of why it might apply to the legal issue.'''},
-                 {'role': 'system', 'content': '''Do not answer any questions that aren't related to providing legislation. If such a question is asked, just reply with "Unfortunately, Legislation Assist is limited
-                  to the provision of references to legislation for legal issues. It is unable to provide answers to other queries."'''},
+                {'role': 'system', 'content': '''Do not answer any questions that aren't related to providing legislation.'''},
+                {'role': 'system', 'content': '''Ask for a jurisdiction if one isn't provided.'''},
+
             ],
             model='gpt-4o-2024-08-06',
             temperature=1,
@@ -65,17 +76,17 @@ def open_ai_connect(request):
         
         answer_from_gpt = asyncio.run(main())
 
+
         answer_processed = answer_from_gpt.choices[0].message.content
 
-  
         print(answer_processed)
 
+        html_answer_processed = markdown.markdown(answer_processed)
 
-        context = {
-            'user_query': user_query,
-            'answer_from_gpt': answer_processed,
-        }
+  
+        print(html_answer_processed)
 
-        html_insert = render_to_string('legislationQuery/partials/queries-and-answers.html', context)
+     
+        html_insert = render_to_string('legislationQuery/partials/queries-and-answers.html', {'user_query':user_query, 'html_answer_processed':mark_safe(html_answer_processed),})
 
         return HttpResponse(html_insert)

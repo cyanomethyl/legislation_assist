@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block content %}
-
-<h1> Find legislation relevant to your legal issue.<h1>
- 
+<div id="headings">
+    <h1> Find legislation relevant to your legal issue.<h1>
     <h2> Enter your issue and discover pertinent legislation. </h2>
     <h3> E.g. "Client purchased a house with a utility poll in their backyard, and the utility company says they can't remove it even though their lawyer said they could."</h3> 
     <h3> E.g. "Client landlord's commercial tenant is running a licensed grow op on the leased premise. The lease agreement doesn't forbid this purpose, but my client would still like to terminate the agreement." </h3>
+</div>
 
 <div id="query-answer-container">
     <div class="field-label-and-field">
@@ -23,7 +23,11 @@
         <div class="field-label">
             Answer
         </div>
-        <div class="field" id="answer-field">
+        <div class="field" id="answer-field-and-spinner">
+            <img id='spinner' src="{% static 'images/spinner.svg' %}">
+            <div id="answer-field">
+
+            </div>
         </div>
     </div>
 </div>

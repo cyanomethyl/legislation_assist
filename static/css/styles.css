@@ -1,3 +1,4 @@
+
 html{
     height:100%;
 }
@@ -20,7 +21,7 @@ nav{
     
 }
 #nav-inner{
-    width: 1280px;
+    width: 850px;
     display:flex;
     align-items: center;
     margin-left: auto;
@@ -42,22 +43,6 @@ button {
     border: 0px solid transparent;
     background-color: transparent;
 }
-footer {
-    width:100%;
-    height: 180px;
-    background: #1F1F1F;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-#footer-text{
-    color:white;
-    width: 1280px;
-    text-align: center;
-}
-#footer-text a{
-    color:white;
-}
 a {
     text-decoration: none;
     color: black;
@@ -71,7 +56,7 @@ a:hover{
  
 }
 main{
-width: 1280px;
+width: 850px;
 height:100%;
 display: flex;
 flex-direction: column;
@@ -79,7 +64,7 @@ align-items: center;
 text-align: left;
 }
 #heading{
-    width:1280px;
+    width:850px;
     text-align:center;
     margin-left: auto;
     margin-right: auto;
@@ -140,17 +125,18 @@ h1{
     align-items:center;
     margin-top: 50px;
     gap:20px;
-    width: 900px;
-    height: 900px;
+    width: 100%;
+    min-height: 315px;
     background-color: #fff1e8;
     border-radius:8px;
-    padding: 20px;
+    box-sizing: border-box;
+    padding: 40px;
 }
 .field-label-and-field{
 
 }
 .field-label{
-    width:600px;
+    width:750px;
     margin-bottom:4px;
     padding-left:3px;
     color:#FA6400;
@@ -160,7 +146,12 @@ h1{
     border-radius: 13px;
     overflow: hidden;
     display:flex;
-  
+    background: white;
+    width: 750px;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:15px;
+    padding-bottom: 15px;
   
 }
 #button-submit-query{
@@ -169,14 +160,21 @@ h1{
     width: 35px;
     background-size: 100%;
     background-repeat: no-repeat;
+    margin-top: auto;
+    margin-bottom: 5px;
+    margin-left: 5px;
 }
 #button-submit-query:hover {
     filter: brightness(130%);
     cursor: pointer;
 }
+#button-submit-query:active {
+    height: 37px;
+    width: 37px;
+}
 .field {
     resize: none;
-    width: 600px;
+    width: 750px;
     padding-left:10px;
     padding-right:10px;
     padding-top:15px;
@@ -192,10 +190,13 @@ h1{
 [contenteditable] {
     outline: 0px;
 }
-#answer-field{
+#answer-field-and-spinner{
     border-radius: 13px;
     min-height: 100px;
 
+}
+#answer-field ol{
+    list-style-type: circle;
 }
 
 ul{
@@ -212,3 +213,18 @@ ul li::marker {
     font-size: 1.2rem;
    
 }
+
+/*********** INDEX PAGE *************/
+#headings {
+
+}
+#spinner {
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 75px;
+    height: 75spx;
+}
+
