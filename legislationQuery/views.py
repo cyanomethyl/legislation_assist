@@ -39,6 +39,18 @@ def open_ai_connect(request):
     if (request.method) == 'POST':
 
         # Insert rate limiter here.
+        #temporary somewhat pseudo code below:
+        if LegislationQuery.objects.all.most_recent().id == 20:
+            if LegislationQuery.objects.all.mostrecent().id.created_date_time < currentdatetime(8am. this code is bad, it' just logic. checking if the id of the most recent instance was created the day before, and the current date time is the next day and it's past 8 am):
+                LegislationQuery.objects.all.delete
+                LegislationQuery.objects.all.create()
+            else:
+                sorry_message = "We apologize, but the daily limit for use of our app has been exceeded. Please return tomorrow after 8am once our usage limit resets."
+                html_insert = render_to_string('legislationQuery/partials/queries-and-answers.html', {'sorry_message':sorry_message})
+                return HttpResponse(html_insert)
+        else:
+            LegislationQuery.objects.all.create()
+
 
         
         parsed_json = json.loads(request.body)
@@ -62,13 +74,10 @@ def open_ai_connect(request):
             messages=[
                 {'role': 'user', 'content': user_query},
                 {'role': 'system', 'content': '''You are a lawyer writing a research memo. Only provide a list of legislation (i.e. statutes, regulations and by-laws) relevant to the legal issue. Include a lot of legislation. Format 
-                 it by title of the legislation, and a detailed summary of what the legislation is about, and a detailed explanation of why it might apply to the legal issue.'''},
-                {'role': 'system', 'content': '''Do not answer any questions that aren't related to providing legislation.'''},
-                {'role': 'system', 'content': '''Ask for a jurisdiction if one isn't provided.'''},
-
+                 it by bolded name of the legislation, and a detailed summary section of what the legislation is about, and a detailed explanation section of why it might apply to the legal issue. Do not answer any questions that aren't related to providing legislation. Ask for a jurisdiction if one isn't provided. Your output should not use list tags.'''},
             ],
             model='gpt-4o-2024-08-06',
-            temperature=1,
+            temperature=0.8,
 
             )
 
