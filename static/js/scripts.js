@@ -27,33 +27,46 @@ function getCookie(name) {
     return cookieStringSplit.pop().split(';').shift()
     }
 
+
+
+const userQuery = document.querySelector('#query-field');
+
+userQuery.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter'){
+        event.preventDefault();
+        sendQueryOpenAIView(userQuery);
+    };
+});
+
+
+const buttonSubmitQuery = document.querySelector('#button-submit-query');
+buttonSubmitQuery.addEventListener('click', function() {
+    console.log('aaa')
+    sendQueryOpenAIView(userQuery);
+});
+
 function sendQueryOpenAIView() {
-    const csrfToken = getCookie('csrftoken');
-    const buttonSubmitQuery = document.querySelector('#button-submit-query');
-
-    buttonSubmitQuery.addEventListener('click', function() {
-        const userQuery = document.querySelector('#query-field');
-        const userAnswer = document.querySelector('#answer-field');
+    console.log('bbbb')
+    const userAnswer = document.querySelector('#answer-field');
     /* Prevents backend calls and therefore DB calls when the user hasn't input a question */
-        if (userQuery.textContent === '') {
-            console.log('sadfs')
-            userAnswer.innerHTML = 'You need to input a query.';
-            return;
-            }
+    if (userQuery.textContent.length < 10 || userQuery.textContent === ' ') {
+        userAnswer.innerHTML = 'You need to input a query.';
+        return;
+        }
     
-        userAnswer.innerHTML = '';
-        document.querySelector('#spinner').style.display = 'flex';
-
-        fetch('/open-ai-connect/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrfToken,
-            },
-            body: JSON.stringify({
-                userQuery: userQuery.textContent
-            })
+    userAnswer.innerHTML = '';
+    document.querySelector('#spinner').style.display = 'flex';
+    const csrfToken = getCookie('csrftoken');
+    fetch('/open-ai-connect/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken,
+        },
+        body: JSON.stringify({
+            userQuery: userQuery.textContent
         })
+    })
     .then(function(response) { 
         
         return response.text()})
@@ -64,13 +77,12 @@ function sendQueryOpenAIView() {
     .catch(function(error) {
         console.error('Error:', error)
     });
-});
 };
 
 
 function initializeScripts() {
     grabDropdownButtons();
-    sendQueryOpenAIView();
+
 }
 
 window.addEventListener("load", function() {
