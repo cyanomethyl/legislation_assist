@@ -36,26 +36,26 @@ def documentation(request):
 
 
 def open_ai_connect(request):
-
     if request.method == 'POST':
-        # Resets instances of the LegislationQuery object to 0 instances, at 8am each day, only once per 24 hour period.
+        # Rate limiter, so that people can't overuse the app.
         reset_time_8am = timezone.now().replace(hour=8, minute=0, second=0) 
         current_time = timezone.now()
-        if LegislationQuery.objects.exists():
-            if ((current_time > reset_time_8am) and (reset_time_8am > LegislationQuery.objects.first().created_date_time)):
-                LegislationQuery.objects.all.delete()
 
-        # Rate limiter, so that people can't overuse the app.
         if LegislationQuery.objects.exists():
+            # Resets instances of the LegislationQuery object to 0 instances, at 8am each day, only once per 24 hour period.
+            if ((current_time > reset_time_8am) and (reset_time_8am > LegislationQuery.objects.first().created_date_time)):
+                LegislationQuery.objects.all().delete()
+
+            # Limits queries to 20 per day.
             if LegislationQuery.objects.latest('created_date_time').id >= 20:
                 sorry_message = "We apologize, but the daily limit for use of the app has been exceeded. Please return tomorrow after 8am once the usage limit resets."
                 html_insert = render_to_string('legislationQuery/partials/queries-and-answers.html', {'sorry_message':sorry_message})
                 return HttpResponse(html_insert)
 
-
+        # Converts received JSON object into Python dictionary
         parsed_json = json.loads(request.body)
         user_query = parsed_json.get('userQuery')
-        # Sanitizes to remove HTML and JS, just as good practice, even though Django escapes HTML and JS
+        # Sanitizes to remove HTML and JS, just as good practice (even though Django already escapes)
         user_query_sanitized = bleach.clean(user_query, tags=[], attributes={})
 
         # Check to prevent DB calls when user hasn't input a question. This is a redundancy in case an user disables specific JS code that prevents calls to backend.
@@ -64,7 +64,7 @@ def open_ai_connect(request):
             return HttpResponse(html_insert)
       
 
-        # Using async to handle simultaneous users
+        # Using async API to handle simultaneous users
         client = AsyncOpenAI(
         api_key=os.environ.get('OPEN_API_KEY'),
         # Sets custom timeout settings via open ai's httpx client. 
@@ -95,7 +95,6 @@ def open_ai_connect(request):
             LegislationQuery.objects.create(query=user_query_sanitized, answer=html_answer_processed)
         
 
-     
         html_insert = render_to_string('legislationQuery/partials/queries-and-answers.html', {'user_query':user_query, 'html_answer_processed':mark_safe(html_answer_processed),})
 
         return HttpResponse(html_insert)

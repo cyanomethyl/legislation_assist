@@ -2,16 +2,22 @@
 {% load static %}
 
 {% block content %}
+<header>
 <div id="headings">
     <h1> Find legislation relevant to your legal issue.<h1>
-    <h2> Enter your issue and discover pertinent legislation. </h2>
-    <h3> E.g. "Client purchased a house with a utility poll in their backyard, and the utility company says they can't remove it even though their lawyer said they could."</h3> 
+    <h2> Legislation Assist is an AI legal research tool that finds legislation related to legal issues. </h2>
 </div>
+</header>
 
 <div id="query-answer-container">
+    <div id="how-to-use">
+        <p>Provide a legal issue, the relevant jurisdiction(s), and get a list of related legislation.</p>
+        <p>E.g. "Can a utility company expropriate land? Toronto, Ontario."</p> 
+
+    </div>
     <div class="field-label-and-field">
         <div class="field-label">
-            Query
+            Query </br>
         </div>
         <div class="hide-scrollbar-edges">
         <div class="field" id="query-field" contenteditable autocomplete="off" placeholder="Enter your query..."> </div>
@@ -25,7 +31,8 @@
         <div class="field" id="answer-field-and-spinner">
             <img id='spinner' src="{% static 'images/spinner.svg' %}">
             <div id="answer-field">
-
+            
+    
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 
 html{
-
+ 
 }
 body{
     margin:0;
@@ -16,8 +16,17 @@ body{
 }
 nav{
     background-color: #FA6400;
-    width:100%;
+    width: 100%;
+    margin-bottom: 25px;
    
+    
+}
+#mobile-open-nav{
+    display: none;
+    
+}
+#mobile-close-nav{
+    display: none;
     
 }
 #nav-inner{
@@ -55,19 +64,23 @@ a:hover{
     background: #DC4300;
  
 }
-main{
-width: 950px;
-min-height:100vh;
-display: flex;
-flex-direction: column;
-align-items: center;
-text-align: left;
+main {
+    max-width: 950px;
+    min-height:100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
 }
 #headings{
-    width:950px;
+    max-width:950px;
     text-align:center;
     margin-left: auto;
     margin-right: auto;
+    box-sizing: border-box;
+    padding-left:60px;
+    padding-right:60px;
     display: flex;
     flex-direction: column;
 }
@@ -84,17 +97,29 @@ h1{
     background: -webkit-linear-gradient(left, #FA6400, #DC4300);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-size: 2.25rem;
+    margin-bottom: 15px;
+}
+h2 {
+    background: -webkit-linear-gradient(left, #FA6400, #DC4300);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.15rem;
+    margin-top:0;
 }
 
 .dropdown-container{
     display:flex;
     flex-direction:column;
     align-items:center;
+    width: 100%;
 }
 .dropdown-button{
     border:0px;
     border-radius: 11px;
-    width: 445px;
+    max-width: 445px;
+    width: 100%;
+    box-sizing: border-box;
     height: 35px;
     margin-top: 20px;
     margin-bottom: 10px;
@@ -111,7 +136,8 @@ h1{
 }
 .dropdown{
     display: none;
-    width: 800px;
+    flex-direction: column;
+    max-width: 800px;
     background-color: #fff1e8;
     border-radius:8px;
     padding-top: 10px;
@@ -124,21 +150,29 @@ h1{
     flex-direction:column;
     align-items:center;
     margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
     gap:20px;
     width: 100%;
-
-    background-color: #fff1e8;
+    background-color: #ffede1;
     border-radius:8px;
     box-sizing: border-box;
     padding: 40px;
+    padding-bottom: 60px;
 }
 .field-label-and-field{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
 }
 .field-label{
-    width:750px;
+    max-width:850px;
+    width: 100%;
     margin-bottom:4px;
-    padding-left:3px;
+    padding-left: 5px;
+    padding-bottom: 1px;
     color:#FA6400;
     font-weight: bold;
 }
@@ -147,7 +181,9 @@ h1{
     overflow: hidden;
     display:flex;
     background: white;
-    width: 850px;
+    max-width: 850px;
+    width: 100%;
+    box-sizing: border-box;
     padding-left:10px;
     padding-right:10px;
     padding-top:15px;
@@ -174,9 +210,10 @@ h1{
 }
 .field {
     resize: none;
-    width: 850px;
+    max-width: 850px;
+    width: 100%;
     padding-left:10px;
-    padding-right:10px;
+    padding-right:15px;
     padding-top:15px;
     padding-bottom: 15px;
     background:#ffffff;
@@ -186,14 +223,21 @@ h1{
 #query-field{
     max-height: 200px;
     overflow-y: auto;
+    overflow-wrap: anywhere;
+    
+   
 }
 [contenteditable] {
     outline: 0px;
 }
 #answer-field-and-spinner{
     border-radius: 13px;
+    box-sizing: border-box;
     min-height: 100px;
 
+}
+#answer-field{
+    padding-left: 5px;
 }
 #answer-field ol{
     list-style-type: none;
@@ -215,7 +259,17 @@ ul li::marker {
     color: white;
     font-weight:bold;
     font-size: 1.2rem;
-   
+    display: flex;
+
+}
+#logo:hover{
+    background: transparent;
+}
+
+#logo img {
+    width: 26px;
+    height: 26px;
+    margin-right: 11px;
 }
 
 footer {
@@ -225,7 +279,8 @@ footer {
     display:flex;
     align-items:center;
     justify-content:center;
-    margin-top: 100px;
+    margin-top: 125px;
+
 }
 #footer-text{
     color:white;
@@ -238,6 +293,10 @@ footer {
 
 /*********** INDEX PAGE *************/
 
+#how-to-use {
+    width: 100%;
+    text-align: left;
+}
 #spinner {
     display: none;
     margin-left: auto;
@@ -248,3 +307,68 @@ footer {
     height: 75spx;
 }
 
+
+/********** MOBILE *************/
+
+@media only screen and (max-width: 600px) {
+    nav {
+        display: flex;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 14px;
+        align-items: center;
+        box-sizing: border-box;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+ #logo-and-menu-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 100px;
+ }
+ #close-open-buttons {
+
+ }
+ .nav-button{
+    height: 26px;
+    width: 26px;
+
+ }
+    #mobile-open-nav {
+        display: flex;
+      
+        
+    }
+    #mobile-close-nav {
+ 
+ 
+        
+    }
+    #nav-inner {
+        flex-direction: column;
+        align-items: start;
+    }
+    nav ul {
+        display: none;
+        flex-direction: column;
+    }
+    main {
+        padding-left: 10px;
+        padding-right: 10px;
+     
+    }
+    #headings {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    #query-answer-container {
+        padding: 12px;
+        padding-bottom: 55px;
+        margin-top: 32px;
+        gap: 35px;
+    }
+
+
+}

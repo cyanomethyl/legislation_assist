@@ -1,11 +1,19 @@
+{% load static %}
 <nav>
     <div id="nav-inner">
-    <div id="logo">
-        Legislation Assist
+        <div id="logo-and-menu-buttons">
+        <a href="/" id="logo">
+        <img src="{% static 'images/scale-balanced.svg' %}"> Legislation Assist
+        </a>
+        <div id="close-open-buttons">
+        <img class="nav-button" id="mobile-open-nav" src="{% static 'images/bars-solid.svg' %}">
+        <img class="nav-button" id="mobile-close-nav" src="{% static 'images/xmark-solid.svg' %}">
+        </div>
+        </div>
+        <ul>
+            <li> <a href="/"> App </a> </li>
+            <li> <a href="/documentation"> Documentation </a></li>
+        </ul>
     </div>
-    <ul>
-        <li> <a href="/"> App </a> </li>
-        <li> <a href="/documentation"> Documentation </a></li>
-    </ul>
-    </div>
+
 </nav>

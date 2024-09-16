@@ -29,24 +29,26 @@ function getCookie(name) {
 
 
 
-const userQuery = document.querySelector('#query-field');
 
-userQuery.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter'){
-        event.preventDefault();
+function detectInputEnter() {
+    const userQuery = document.querySelector('#query-field');
+    userQuery.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter'){
+            event.preventDefault();
+            sendQueryOpenAIView(userQuery);
+        };
+    });
+}
+
+function detectInputClick() {
+    const userQuery = document.querySelector('#query-field');
+    const buttonSubmitQuery = document.querySelector('#button-submit-query');
+    buttonSubmitQuery.addEventListener('click', function() {
         sendQueryOpenAIView(userQuery);
-    };
-});
+    });
+}
 
-
-const buttonSubmitQuery = document.querySelector('#button-submit-query');
-buttonSubmitQuery.addEventListener('click', function() {
-    console.log('aaa')
-    sendQueryOpenAIView(userQuery);
-});
-
-function sendQueryOpenAIView() {
-    console.log('bbbb')
+function sendQueryOpenAIView(userQuery) {
     const userAnswer = document.querySelector('#answer-field');
     /* Prevents backend calls and therefore DB calls when the user hasn't input a question */
     if (userQuery.textContent.length < 10 || userQuery.textContent === ' ') {
@@ -79,12 +81,36 @@ function sendQueryOpenAIView() {
     });
 };
 
+function openCloseNavMenuButtonMobile() {
+    const mobileNavMenuButtonOpen = document.querySelector('#mobile-open-nav');
+    const mobileNavMenuButtonClose = document.querySelector('#mobile-close-nav');
+    const mobileNavMenu = document.querySelector('#nav-inner ul');
+    mobileNavMenuButtonOpen.addEventListener('click', function() {
+        mobileNavMenu.style.display = 'flex';
+        mobileNavMenuButtonOpen.style.display = 'none';
+        mobileNavMenuButtonClose.style.display = 'flex';
+        
+    })
+    mobileNavMenuButtonClose.addEventListener('click', function() {
+        mobileNavMenu.style.display = 'none';
+        mobileNavMenuButtonClose.style.display = 'none';
+        mobileNavMenuButtonOpen.style.display = 'flex';
+    })
 
-function initializeScripts() {
+
+}
+
+
+function startScripts() {
     grabDropdownButtons();
+    if (document.querySelector('#query-field')) {
+        detectInputClick(); 
+        detectInputEnter();
+    };
+    openCloseNavMenuButtonMobile();
 
 }
 
 window.addEventListener("load", function() {
-    initializeScripts();
+    startScripts();
 });
