@@ -43,7 +43,8 @@ def open_ai_connect(request):
             # Resets instances of the LegislationQuery object to 0 instances, at 8am each day, only once per 24 hour period.
             if ((current_time > reset_time_8am) and (reset_time_8am > LegislationQuery.objects.first().created_date_time)):
                 LegislationQuery.objects.all().delete()
-
+                
+        if LegislationQuery.objects.exists():
             # Limits queries to 20 per day.
             if LegislationQuery.objects.latest('created_date_time').id >= 20:
                 sorry_message = "We apologize, but the daily limit for use of the app has been exceeded. Please return tomorrow after 8am once the usage limit resets."
