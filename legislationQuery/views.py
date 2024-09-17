@@ -44,7 +44,6 @@ def index(request):
         
     return render(request, 'legislationQuery/index.html', context)
 
-
 def about(request):
     context = {
         'title': 'About | Legislation Assist',
