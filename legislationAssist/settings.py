@@ -39,7 +39,7 @@ if ENVIRONMENT == 'development':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['legislationassist.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['legislationassist-31fec75d60f1.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
