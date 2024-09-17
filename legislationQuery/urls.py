@@ -3,6 +3,6 @@ from . import views
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("documentation/", views.documentation, name="documentation"),
+    path("about/", views.about, name="about"),
     path("open-ai-connect/", views.open_ai_connect, name="open_ai_connect"),
 ]

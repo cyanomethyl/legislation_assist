@@ -26,11 +26,11 @@ def index(request):
     }
     return render(request, 'legislationQuery/index.html', context)
 
-def documentation(request):
+def about(request):
     context = {
-        'title': 'Internal Documentation | Legislation Assist',
+        'title': 'About | Legislation Assist',
     }
-    return render(request, 'legislationQuery/documentation.html', context)
+    return render(request, 'legislationQuery/about.html', context)
 
 
 def open_ai_connect(request):
