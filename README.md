@@ -1,2 +1,2 @@
 "# legislation_assist" 
-# legislation assist development branch
+# legislation assist main branch
