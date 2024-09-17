@@ -1,4 +1,3 @@
-
 html{
  
 }
@@ -107,44 +106,66 @@ h2 {
     font-size: 1.15rem;
     margin-top:0;
 }
-
-.dropdown-container{
+ul{
     display:flex;
     flex-direction:column;
-    align-items:center;
-    width: 100%;
+    gap:10px;
 }
-.dropdown-button{
-    border:0px;
-    border-radius: 11px;
-    max-width: 445px;
-    width: 100%;
-    box-sizing: border-box;
-    height: 35px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    background-color: #FA6400;
-    color:white;
+ul li::marker {
+    color: #FA6400;
+}
+#logo {
+    color: white;
     font-weight:bold;
-    font-size: 0.9375rem;
+    font-size: 1.2rem;
+    display: flex;
+
 }
-.dropdown-button:hover{
-    background-color: #DC4300;
-    cursor: pointer;
-  
-    box-shadow: 0 2px 4px 3px rgba(0, 0, 0, 0.1);
+#logo:hover{
+    background: transparent;
 }
-.dropdown{
+
+#logo img {
+    width: 26px;
+    height: 26px;
+    margin-right: 11px;
+}
+
+footer {
+    width:100%;
+    height: 180px;
+    background: #1F1F1F;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top: 125px;
+
+}
+#footer-text{
+    color:white;
+    width: 1280px;
+    text-align: center;
+}
+#footer-text a{
+    color: white;
+}
+
+/*********** APP/INDEX PAGE *************/
+
+#how-to-use {
+    width: 100%;
+    text-align: left;
+}
+#spinner {
     display: none;
-    flex-direction: column;
-    max-width: 800px;
-    background-color: #fff1e8;
-    border-radius:8px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left:20px;
-    padding-right:20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 75px;
+    height: 75spx;
 }
+
 #query-answer-container{
     display: flex;
     flex-direction:column;
@@ -224,7 +245,7 @@ h2 {
     max-height: 200px;
     overflow-y: auto;
     overflow-wrap: anywhere;
-    
+
    
 }
 [contenteditable] {
@@ -247,64 +268,43 @@ h2 {
     margin-bottom: 11px;
 }
 
-ul{
+/********* DOCUMENTATION PAGE *********/
+.dropdown-container{
     display:flex;
     flex-direction:column;
-    gap:10px;
-}
-ul li::marker {
-    color: #FA6400;
-}
-#logo {
-    color: white;
-    font-weight:bold;
-    font-size: 1.2rem;
-    display: flex;
-
-}
-#logo:hover{
-    background: transparent;
-}
-
-#logo img {
-    width: 26px;
-    height: 26px;
-    margin-right: 11px;
-}
-
-footer {
-    width:100%;
-    height: 180px;
-    background: #1F1F1F;
-    display:flex;
     align-items:center;
-    justify-content:center;
-    margin-top: 125px;
-
-}
-#footer-text{
-    color:white;
-    width: 1280px;
-    text-align: center;
-}
-#footer-text a{
-    color: white;
-}
-
-/*********** INDEX PAGE *************/
-
-#how-to-use {
     width: 100%;
-    text-align: left;
 }
-#spinner {
+.dropdown-button{
+    border:0px;
+    border-radius: 11px;
+    max-width: 445px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 35px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-color: #FA6400;
+    color:white;
+    font-weight:bold;
+    font-size: 0.9375rem;
+}
+.dropdown-button:hover{
+    background-color: #DC4300;
+    cursor: pointer;
+  
+    box-shadow: 0 2px 4px 3px rgba(0, 0, 0, 0.1);
+}
+.dropdown{
     display: none;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
-    width: 75px;
-    height: 75spx;
+    flex-direction: column;
+    max-width: 800px;
+    background-color: #fff1e8;
+    border-radius:8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left:20px;
+    padding-right:20px;
 }
 
 
@@ -339,11 +339,6 @@ footer {
     #mobile-open-nav {
         display: flex;
       
-        
-    }
-    #mobile-close-nav {
- 
- 
         
     }
     #nav-inner {

@@ -22,14 +22,12 @@ load_dotenv(dotenv_path=os.path.join(settings.BASE_DIR, '.env'))
 def index(request):
 
     context = {
-        'legislation_queries_answers' : LegislationQuery.objects.all(),
         'title' : 'Find Relevant Legislation | Legislation Assist',
     }
     return render(request, 'legislationQuery/index.html', context)
 
 def documentation(request):
     context = {
-        'legislation_queries_answers': LegislationQuery.objects.all(),
         'title': 'Internal Documentation | Legislation Assist',
     }
     return render(request, 'legislationQuery/documentation.html', context)
@@ -90,7 +88,7 @@ def open_ai_connect(request):
         answer_from_gpt = asyncio.run(main())
   
         html_answer_processed = markdown.markdown(answer_from_gpt)
-        # saves queries and answers to objects. len > 300 because 300 is a safe approximation of the maximum char length of an answer that does not provide legislation.
+        # aves queries and answers to objects. len() > 300 because 300 is a safe approximation of the maximum char length of an answer that does not provide legislation.
         if len(html_answer_processed) > 300:
             LegislationQuery.objects.create(query=user_query_sanitized, answer=html_answer_processed)
         
