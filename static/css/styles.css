@@ -297,7 +297,10 @@ footer {
     margin-bottom: 11px;
 }
 
-/********* DOCUMENTATION PAGE *********/
+/********* ABOUT PAGE *********/
+#about-intro {
+    margin-bottom: 20px;
+}
 .dropdown-container{
     display:flex;
     flex-direction:column;

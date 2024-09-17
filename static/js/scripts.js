@@ -10,6 +10,8 @@ function dropdownMenus(event) {
     const dropdown = dropdownContainer.querySelector('.dropdown');
     if (getComputedStyle(dropdown).display === 'none'){
             dropdown.style.display = 'flex' ;
+            // Scrolls to start of the dropdown menu
+            dropdown.scrollIntoView({ behavior: 'smooth', block: 'start'})
     }
     else {
             dropdown.style.display = 'none';
