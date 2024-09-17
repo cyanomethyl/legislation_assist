@@ -135,6 +135,8 @@ CSRF_COOKIE_HTTPONLY = False
 
 SESSION_COOKIE_SECURE = True 
 
+CSRF_TRUSTED_ORIGINS = ['https://legislationassist-31fec75d60f1.herokuapp.com']
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
