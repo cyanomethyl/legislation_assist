@@ -129,11 +129,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-CSRF_COOKIE_SECURE = True  
+CSRF_COOKIE_SECURE = False  
 
 CSRF_COOKIE_HTTPONLY = False  
 
-SESSION_COOKIE_SECURE = True 
+SESSION_COOKIE_SECURE = False 
 
 CSRF_TRUSTED_ORIGINS = ['https://legislationassist-31fec75d60f1.herokuapp.com']
 
