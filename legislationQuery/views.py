@@ -112,6 +112,6 @@ def open_ai_connect(request):
             LegislationQuery.objects.create(query=user_query_sanitized, answer=html_answer_processed)
         
 
-        html_insert = render_to_string('legislationQuery/partials/queries-and-answers.html', {'user_query':user_query, 'html_answer_processed':mark_safe(html_answer_processed),})
+        html_insert = render_to_string('legislationQuery/partials/answers.html', {'user_query':user_query, 'html_answer_processed':mark_safe(html_answer_processed),})
 
         return HttpResponse(html_insert)
