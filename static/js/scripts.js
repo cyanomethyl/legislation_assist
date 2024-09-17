@@ -30,6 +30,27 @@ function getCookie(name) {
     return cookieStringSplit.pop().split(';').shift()
     }
 
+// Detects if submit button (to send query) was clicked.
+function detectInputClick() {
+    const userQuery = document.querySelector('#query-field');
+    const buttonSubmitQuery = document.querySelector('#button-submit-query');
+
+    // Call function that sends query to backend, and calls function to disable submit button temporarily
+    function handleSubmitClick() {
+        sendQueryOpenAIView(userQuery);
+        disableSubmitButtonTemporary(buttonSubmitQuery, 3000);
+    }
+    // Disables submit button temporarily to prevent quick double clicks.
+    function disableSubmitButtonTemporary() {
+        userQuery.blur();
+        buttonSubmitQuery.disabled = true;
+        setTimeout(function() {
+            buttonSubmitQuery.disabled = false;
+        }, 2000);
+    };
+
+    buttonSubmitQuery.addEventListener('click', handleSubmitClick);
+};
 
 // Detects if Enter was pressed while in the input field (to send query).
 function detectInputEnter() {
@@ -55,28 +76,6 @@ function detectInputEnter() {
 
     userQuery.addEventListener('keydown', handleSubmitEnter);
 }
-
-// Detects if submit button (to send query) was clicked.
-function detectInputClick() {
-    const userQuery = document.querySelector('#query-field');
-    const buttonSubmitQuery = document.querySelector('#button-submit-query');
-
-    // Call function that sends query to backend, and calls function to disable submit button temporarily
-    function handleSubmitClick() {
-        sendQueryOpenAIView(userQuery);
-        disableSubmitButtonTemporary(buttonSubmitQuery, 3000);
-    }
-    // Disables submit button temporarily to prevent quick double clicks.
-    function disableSubmitButtonTemporary() {
-        userQuery.blur();
-        buttonSubmitQuery.disabled = true;
-        setTimeout(function() {
-            buttonSubmitQuery.disabled = false;
-        }, 2000);
-    };
-
-    buttonSubmitQuery.addEventListener('click', handleSubmitClick);
-};
 
 // Sends query to backend view that calls Open AI API.
 function sendQueryOpenAIView(userQuery) {
@@ -142,6 +141,7 @@ function startScripts() {
     if (document.querySelector('#query-field')) {
         detectInputClick(); 
         detectInputEnter();
+        
     };
     openCloseNavMenuButtonMobile();
 

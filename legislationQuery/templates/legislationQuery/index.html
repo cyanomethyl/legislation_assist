@@ -1,41 +1,29 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block content %}
-<header>
-<div id="headings">
-    <h1> Find legislation relevant to your legal issue.<h1>
-    <h2> Legislation Assist is an AI legal research tool that finds legislation related to legal issues. </h2>
-</div>
-</header>
 
-<div id="query-answer-container">
-    <div id="how-to-use">
-        <p>Provide a legal issue, the relevant jurisdiction(s), and get a list of related legislation.</p>
-        <p>E.g. "Can a utility company expropriate land? Toronto, Ontario."</p> 
+    <header>
+        <div id="headings">
+            <h1> Login </h1>
+        </div>
+    </header>
 
-    </div>
-    <div class="field-label-and-field">
-        <div class="field-label">
-            Query </br>
-        </div>
-        <div class="hide-scrollbar-edges">
-        <div class="field" id="query-field" contenteditable autocomplete="off" placeholder="Enter your query..."> </div>
-        <button type="submit" id="button-submit-query"></button>
-        </div>
-    </div>
-    <div class="field-label-and-field">
-        <div class="field-label">
-            Answer
-        </div>
-        <div class="field" id="answer-field-and-spinner">
-            <img id='spinner' src="{% static 'images/spinner.svg' %}">
-            <div id="answer-field">
-            
-    
-            </div>
-        </div>
-    </div>
+<div id="login-heading">
+    <p> This page has been password protected to protect it from malicious (e.g. spam) queries.</p> If you should be able to access this page, you can find the password on the document on which the link to this site was provided. Or you can get in touch with me if you have my contact information.</p>
+    <p> {% if error_message %}
+       <span style="color:rgb(240, 23, 23);"><b> {{ error_message }} </b></span>
+        {% endif %}
+    </p>
 </div>
+
+<form method="POST" id="login-form">
+    {% csrf_token %}
+    <input type="password" name="password" id="password-input" placeholder="Enter password">
+    <button type="submit" id="login-submit">Login</button>
+</form>
+
+
+
+
 
 {% endblock %}

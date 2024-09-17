@@ -19,19 +19,37 @@ from dotenv import load_dotenv
 # Path to environment variable file
 load_dotenv(dotenv_path=os.path.join(settings.BASE_DIR, '.env'))
 
-def index(request):
-
+# Password protected home page to prevent malicious queries (e.g. spam)
+def index(request):   
+    real_password = os.environ.get('INDEX_PW')
     context = {
-        'title' : 'Find Relevant Legislation | Legislation Assist',
+        'title': 'Login | Legislation Assist',
     }
+    
+    if request.method == 'POST':
+        input_password = request.POST.get('password') 
+
+        if input_password == real_password:
+            context = {
+                'title' : 'Find Relevant Legislation | Legislation Assist',
+            }
+
+            return render (request, 'legislationQuery/app.html', context)
+        
+        else:
+            error_message = 'You have entered an incorrect password. Try again.'
+            context.update({'error_message': error_message})
+
+            return render(request, 'legislationQuery/index.html', context)
+        
     return render(request, 'legislationQuery/index.html', context)
+
 
 def about(request):
     context = {
         'title': 'About | Legislation Assist',
     }
     return render(request, 'legislationQuery/about.html', context)
-
 
 def open_ai_connect(request):
     if request.method == 'POST':
@@ -48,7 +66,7 @@ def open_ai_connect(request):
             # Limits queries to 20 per day.
             if LegislationQuery.objects.latest('created_date_time').id >= 20:
                 sorry_message = "We apologize, but the daily limit for use of the app has been exceeded. Please return tomorrow after 8am once the usage limit resets."
-                html_insert = render_to_string('legislationQuery/partials/queries-and-answers.html', {'sorry_message':sorry_message})
+                html_insert = render_to_string('legislationQuery/partials/answers.html', {'sorry_message':sorry_message})
                 return HttpResponse(html_insert)
 
         # Converts received JSON object into Python dictionary
@@ -59,7 +77,7 @@ def open_ai_connect(request):
 
         # Check to prevent DB calls when user hasn't input a question. This is a redundancy in case an user disables specific JS code that prevents calls to backend.
         if user_query_sanitized == ' ':
-            html_insert = render_to_string('legislationQuery/partials/queries-and-answers.html', {'user_query':user_query_sanitized,})
+            html_insert = render_to_string('legislationQuery/partials/answers.html', {'user_query':user_query_sanitized,})
             return HttpResponse(html_insert)
       
 

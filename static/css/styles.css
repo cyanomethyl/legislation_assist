@@ -150,6 +150,36 @@ footer {
     color: white;
 }
 
+/*********** PASSWORD PAGE ***************/
+#login-heading {
+    max-width: 800px;
+    text-align: center;
+}
+#login-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+#password-input {
+    height: 35px;
+    width: 150px;
+    border-radius: 8px;
+    border: 1px solid #FA6400;
+    padding-left: 8px;
+    box-sizing: border-box;
+    
+}
+#login-submit {
+    border: 1px solid #FA6400;
+    border-radius:8px;
+    width: 65px;
+    height: 35px;
+}
+#login-submit:hover {
+    border: 2px solid #FA6400;
+    cursor: pointer;
+}
+
 /*********** APP/INDEX PAGE *************/
 
 #how-to-use {
